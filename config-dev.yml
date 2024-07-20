@@ -1,0 +1,9 @@
+server:
+  port: 10010
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # 暴露触发消息总线的地址 actuator受制于请求方依赖项spring-boot-starter-actuator，是固定的
+        include: actuator/config-refresh

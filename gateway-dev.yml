@@ -29,7 +29,7 @@ spring:
       # 跨域设置
       globalcors:
         corsConfigurations:
-          '[/**]':
+          "[/**]":
             allowedOrigins: "*"
             allowedMethods:
               - GET
@@ -46,22 +46,9 @@ spring:
             allowCredentials: true
             maxAge: 3600
 
-resilience4j:
-  circuitbreaker:
-    instances:
-      myCircuitBreaker:
-        register-health-indicator: true
-        sliding-window-size: 100
-        minimum-number-of-calls: 10
-        failure-rate-threshold: 50
-        wait-duration-in-open-state: 60s
-        permitted-number-of-calls-in-half-open-state: 5
 eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:10086/eureka/
   instance:
     prefer-ip-address: true
-
-
-
