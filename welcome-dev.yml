@@ -1,0 +1,25 @@
+server:
+  port: ${port:8082}
+
+spring:
+  application:
+    name: welcome-service
+
+ribbon:
+  ConnectionTimeout: 5000 # 连接超时时间
+  ReadTimeout: 5000 # 读取超时时间
+  MaxAutoRetries: 0 # 当前服务实例重试次数
+  MaxAutoRetriesNextServer: 1 # 重试其他服务实例次数
+  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule # 负载均衡策略
+  OkToRetryOnAllOperations: true # 是否对所有操作都进行重试
+
+feign.compression:
+  request:
+    enable: true # 开启请求压缩
+    mime-types: text/html,application/xml,application/json # 压缩的数据类型
+    mime-request-size: 2048 # 设置触发压缩的下限
+  response:
+    enable: true # 开启响应压缩
+
+logging.level:
+  com.netflix: debug

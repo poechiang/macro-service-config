@@ -1,5 +1,5 @@
 server:
-  port: ${port:10081}
+  port: ${port:8080}
 spring:
   application:
     name: gateway-service
@@ -7,10 +7,10 @@ spring:
     gateway:
       routes:
         # 路由id
-        - id: user-service-route
+        - id: welcome-service-route
           # 代理服务地址 - 断言命中后要转发到的真正的服务地址
           # uri: http://127.0.0.1:8081
-          uri: lb://user-service
+          uri: lb://welcome-service
           # 断言 - 匹配映射路径
           predicates:
             # - Path=/users/**
@@ -20,6 +20,15 @@ spring:
             # 添加前缀
             - PrefixPath=/users
             # 自定义局部过滤器
+            - MyParam=name
+
+        - id: user-service-route
+          uri: lb://user-service
+          predicates:
+            - Path=/**
+          # 局部过滤器，仅针对匹配的本路由升效
+          filters:
+            - PrefixPath=/users
             - MyParam=name
       # 默认过滤器，对所有路由都升效
       default-filter:
@@ -45,10 +54,3 @@ spring:
               - "*"
             allowCredentials: true
             maxAge: 3600
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://127.0.0.1:10086/eureka/
-  instance:
-    prefer-ip-address: true
