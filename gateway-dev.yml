@@ -1,0 +1,61 @@
+server:
+  port: 10081
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        # 路由id
+        - id: user-service-route
+          # 代理服务地址 - 断言命中后要转发到的真正的服务地址
+          # uri: http://127.0.0.1:8081
+          uri: lb://user-service
+          # 断言 - 匹配映射路径
+          predicates:
+            # - Path=/users/**
+            - Path=/**
+          # 局部过滤器，仅针对匹配的本路由升效
+          filters:
+            # 添加前缀
+            - PrefixPath=/users
+            # 自定义局部过滤器
+            - MyParam=name
+      # 默认过滤器，对所有路由都升效
+      default-filter:
+        # - 请求头属性名，请求头属性值，同一个过滤器，可以重复添加
+        - AddRequestHeader=X-Request-Foo, Bar
+
+      # 跨域设置
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: *
+            #  - "http://references.com"
+            allowedMethods:
+              - GET
+              - POST
+              - OPTIONS
+              - PATCH
+              - DELETE
+              - PUT
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      myCircuitBreaker:
+        register-health-indicator: true
+        sliding-window-size: 100
+        minimum-number-of-calls: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 60s
+        permitted-number-of-calls-in-half-open-state: 5
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka/
+  instance:
+    prefer-ip-address: true
+
+
+
