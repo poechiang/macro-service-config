@@ -30,7 +30,8 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-            allowedOrigins: *
+            allowedOrigins: 
+              - *
             #  - "http://references.com"
             allowedMethods:
               - GET
