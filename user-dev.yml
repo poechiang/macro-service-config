@@ -11,6 +11,12 @@ spring:
   application:
     name: user-service
 
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: root_msf
+    password: 123456
+
 mybatis:
   mapper-locations: classpath:mappers/*Mapper.xml
   type-alias-package: org.jeffchi.user.dto
