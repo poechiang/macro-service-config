@@ -1,0 +1,16 @@
+server:
+  port: ${port:8081}
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/macro-cloud
+    username: root
+    password: 123456
+  # 配置本模块注册到服务中心的名称
+  application:
+    name: user-service
+
+mybatis:
+  mapper-locations: classpath:mappers/*Mapper.xml
+  type-alias-package: org.jeffchi.user.dto

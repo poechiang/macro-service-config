@@ -1,0 +1,17 @@
+server:
+  port: ${port:8082}
+
+spring:
+  application:
+    name: welcome-service
+
+feign.compression:
+  request:
+    enable: true # 开启请求压缩
+    mime-types: text/html,application/xml,application/json # 压缩的数据类型
+    mime-request-size: 2048 # 设置触发压缩的下限
+  response:
+    enable: true # 开启响应压缩
+
+logging.level:
+  com.netflix: debug
