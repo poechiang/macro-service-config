@@ -50,7 +50,9 @@ spring:
       globalcors:
         corsConfigurations:
           "[/**]":
-            allowedOrigins: "*"
+            allowedOriginPatterns:
+              - "http://.*.com"
+
             allowedMethods:
               - GET
               - POST
