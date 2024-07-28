@@ -41,6 +41,16 @@ spring:
             # 删除前缀 user
             - StripPrefix=1
             - MyParam=name
+
+        - id: monitor-service-route
+          uri: lb://monitor-service
+          predicates:
+            - Path=/monitor/**
+          # 局部过滤器，仅针对匹配的本路由升效
+          filters:
+            # 删除前缀 user
+            - StripPrefix=1
+
       # 默认过滤器，对所有路由都升效
       default-filter:
         # - 请求头属性名，请求头属性值，同一个过滤器，可以重复添加
