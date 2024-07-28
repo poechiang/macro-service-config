@@ -2,5 +2,5 @@
 rabbitmq:
   host: localhost
   port: 5672
-  username: guest
-  password: guest
+  username: root_msf
+  password: 123456
