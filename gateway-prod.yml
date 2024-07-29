@@ -46,7 +46,7 @@ spring:
       globalcors:
         corsConfigurations:
           "[/**]":
-            allowedOrigins: "*"
+            allowedOriginPatterns: "*"
             allowedMethods:
               - GET
               - POST
@@ -61,3 +61,4 @@ spring:
               - "*"
             allowCredentials: true
             maxAge: 3600
+            add-to-simple-url-handler-mapping: true
