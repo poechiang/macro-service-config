@@ -35,11 +35,11 @@ spring:
         - id: user-service-route
           uri: lb://user-service
           predicates:
-            - Path=/user/**
+            - Path=/api/v1/user/**
           # 局部过滤器，仅针对匹配的本路由升效
           filters:
             # 删除前缀 user
-            - StripPrefix=1
+            - StripPrefix=3
             - MyParam=name
 
         - id: monitor-service-route
