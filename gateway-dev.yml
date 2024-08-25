@@ -16,11 +16,9 @@ spring:
         # 路由id
         - id: welcome-service-route
           # 代理服务地址 - 断言命中后要转发到的真正的服务地址
-          # uri: http://127.0.0.1:8081
           uri: lb://welcome-service
           # 断言 - 匹配映射路径
           predicates:
-            # - Path=/users/**
             - Path=/welcome/**
           # 局部过滤器，仅针对匹配的本路由升效
           filters:
