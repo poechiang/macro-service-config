@@ -4,9 +4,3 @@ server:
   # 配置本模块注册到服务中心的名称
   application:
     name: user-service
-
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: root_msf
-    password: 123456
