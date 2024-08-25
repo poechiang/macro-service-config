@@ -2,17 +2,6 @@ server:
   port: ${port:4082}
 
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/macro_cloud
-    username: root
-    password: 123456
   # 配置本模块注册到服务中心的名称
   application:
     name: user-service
-
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: root_msf
-    password: 123456
