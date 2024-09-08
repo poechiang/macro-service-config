@@ -40,10 +40,21 @@ spring:
             - StripPrefix=3
             - MyParam=name
 
+        - id: file-service-route
+          uri: lb://file-service
+          predicates:
+            - Path=/api/v1/upload/**
+            - Path=/api/v1/download/**
+          # 局部过滤器，仅针对匹配的本路由升效
+          filters:
+            # 删除前缀 user
+            - StripPrefix=2
+            - MyParam=name
+
         - id: monitor-service-route
           uri: lb://monitor-service
           predicates:
-            - Path=/monitor/**
+            - Path=/api/v1/monitor/**
           # 局部过滤器，仅针对匹配的本路由升效
           filters:
             # 删除前缀 user
