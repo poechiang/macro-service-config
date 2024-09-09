@@ -1,6 +1,3 @@
-server:
-  port: ${port:4082}
-
 spring:
   # 配置本模块注册到服务中心的名称
   application:
