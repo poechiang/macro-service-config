@@ -1,13 +1,3 @@
-spring:
-  application:
-    name: welcome-service
-
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: root_msf
-    password: 123456
-
 feign.compression:
   request:
     enable: true # 开启请求压缩
